@@ -1,0 +1,25 @@
+# ⚠️ Arquivo com dados sensíveis (como a chave da OpenAI)
+src/main/resources/application.properties
+
+# Arquivos de log
+*.log
+logs/
+*.log.*
+
+# Diretórios de teste gerados
+/test-output/
+test-results/
+surefire-reports/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos do IntelliJ adicionais
+.idea/
+*.iml
+*.iws
+
+# Arquivos de cache Gradle
+.gradle/
+build/
