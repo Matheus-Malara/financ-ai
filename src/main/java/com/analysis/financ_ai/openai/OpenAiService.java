@@ -19,20 +19,19 @@ public class OpenAiService {
     private String apiKey;
 
     @Value("${openai.model}")
-    private String modelo;
-
+    private String model;
 
     public OpenAiService(WebClient.Builder builder) {
         this.webClient = builder.baseUrl("https://api.openai.com/v1").build();
     }
 
-    public String analisarIndicadoresComIA(StockIndicators indicadores) {
-        String prompt = gerarPrompt(indicadores);
+    public String analyzeIndicatorsWithAi(StockIndicators indicators) {
+        String prompt = generatePrompt(indicators);
 
         OpenAiRequest request = new OpenAiRequest(
-                modelo,
+                model,
                 List.of(
-                        new OpenAiMessage("system", "Você é um analista de investimentos experiente."),
+                        new OpenAiMessage("system", "You are an experienced financial analyst."),
                         new OpenAiMessage("user", prompt)
                 )
         );
@@ -45,19 +44,23 @@ public class OpenAiService {
                     .bodyValue(request)
                     .retrieve()
                     .bodyToMono(OpenAiResponse.class)
-                    .map(response -> response.getChoices().get(0).getMessage().getContent())
+                    .map(response -> response.getChoices().getFirst().getMessage().getContent())
                     .block();
-
         } catch (Exception e) {
-            return "Erro ao chamar a API da OpenAI: " + e.getMessage();
+            return "Error calling OpenAI API: " + e.getMessage();
         }
     }
 
-    private String gerarPrompt(StockIndicators indicadores) {
+    private String generatePrompt(StockIndicators indicators) {
         return """
-                Com base nos seguintes indicadores fundamentalistas de uma empresa, diga se pode ser um bom momento para comprar essa ação. Justifique de forma breve, clara e didática:
+                Based on the following fundamental indicators of the company, provide an investment analysis in the following format:
                 
+                Summary: A 2-4 sentence summary of the company's financial health and investment potential.
+                Conclusion: A final recommendation in 1 sentence, explaining if it's a good investment opportunity.
+                
+                Indicators:
                 %s
-                """.formatted(indicadores.toFormattedString());
+                """.formatted(indicators.toFormattedString());
     }
+
 }

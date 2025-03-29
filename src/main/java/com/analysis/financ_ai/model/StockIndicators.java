@@ -1,50 +1,73 @@
 package com.analysis.financ_ai.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@ToString
 @AllArgsConstructor
+@ToString
 public class StockIndicators {
+
+    @JsonProperty("ticker")
     private String ticker;
-    private double pl;
-    private double pvp;
+
+    @JsonProperty("priceToEarnings")
+    private double priceToEarnings;
+
+    @JsonProperty("priceToBook")
+    private double priceToBook;
+
+    @JsonProperty("dividendYield")
     private double dividendYield;
+
+    @JsonProperty("roe")
     private double roe;
-    private double evEbitda;
-    private double marketCap;
-    private double margemLiquida;
+
+    @JsonProperty("evToEbitda")
+    private double evToEbitda;
+
+    @JsonProperty("marketCapBillion")
+    private double marketCapBillion;
+
+    @JsonProperty("netMargin")
+    private double netMargin;
+
+    @JsonProperty("roic")
     private double roic;
-    private double dividaLiquidaPatrimonio;
-    private double crescimentoReceita5Anos;
+
+    @JsonProperty("debtToEquity")
+    private double debtToEquity;
+
+    @JsonProperty("revenueGrowth5y")
+    private double revenueGrowth5y;
 
     public String toFormattedString() {
         return """
                 Ticker: %s
-                P/L: %.2f
-                P/VP: %.2f
+                P/E Ratio: %.2f
+                P/B Ratio: %.2f
                 Dividend Yield: %.2f%%
                 ROE: %.2f%%
                 EV/EBITDA: %.2f
-                Market Cap: R$ %.2f bi
-                Margem Líquida: %.2f%%
+                Market Cap: $%.2fB
+                Net Margin: %.2f%%
                 ROIC: %.2f%%
-                Dívida Líquida / Patrimônio: %.2f%%
-                Crescimento Receita (5 anos): %.2f%%
+                Debt-to-Equity: %.2f%%
+                Revenue Growth (5y): %.2f%%
                 """.formatted(
                 ticker.toUpperCase(),
-                pl,
-                pvp,
+                priceToEarnings,
+                priceToBook,
                 dividendYield,
                 roe,
-                evEbitda,
-                marketCap,
-                margemLiquida,
+                evToEbitda,
+                marketCapBillion,
+                netMargin,
                 roic,
-                dividaLiquidaPatrimonio,
-                crescimentoReceita5Anos
+                debtToEquity,
+                revenueGrowth5y
         );
     }
 }
