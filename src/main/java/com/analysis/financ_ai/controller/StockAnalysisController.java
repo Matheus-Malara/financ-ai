@@ -5,7 +5,7 @@ import com.analysis.financ_ai.service.StockAnalysisService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/analise")
+@RequestMapping("/analysis")
 public class StockAnalysisController {
 
     private final StockAnalysisService stockAnalysisService;
@@ -15,7 +15,7 @@ public class StockAnalysisController {
     }
 
     @GetMapping("/{ticker}")
-    public StockAnalysisResponse analisarAcao(@PathVariable String ticker) {
-        return stockAnalysisService.analisar(ticker);
+    public StockAnalysisResponse analyzeStock(@PathVariable String ticker) {
+        return stockAnalysisService.analyze(ticker);
     }
 }

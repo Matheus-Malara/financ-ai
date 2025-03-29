@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class StockAnalysisResponse {
-    private StockIndicators indicators;
-    private AiAnalysis aiAnalysis;
+public class AiAnalysis {
+
+    private String summary;
+    private String conclusion;
 }
