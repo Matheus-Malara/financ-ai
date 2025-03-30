@@ -1,6 +1,6 @@
 package com.analysis.financ_ai.openai;
 
-import com.analysis.financ_ai.model.StockIndicators;
+import com.analysis.financ_ai.model.StockOverview;
 import com.analysis.financ_ai.openai.dto.OpenAiMessage;
 import com.analysis.financ_ai.openai.dto.OpenAiRequest;
 import com.analysis.financ_ai.openai.dto.OpenAiResponse;
@@ -25,7 +25,7 @@ public class OpenAiService {
         this.webClient = builder.baseUrl("https://api.openai.com/v1").build();
     }
 
-    public String analyzeIndicatorsWithAi(StockIndicators indicators) {
+    public String analyzeIndicatorsWithAi(StockOverview indicators) {
         String prompt = generatePrompt(indicators);
 
         OpenAiRequest request = new OpenAiRequest(
@@ -51,12 +51,14 @@ public class OpenAiService {
         }
     }
 
-    private String generatePrompt(StockIndicators indicators) {
+    private String generatePrompt(StockOverview indicators) {
         return """
                 Based on the following fundamental indicators of the company, provide an investment analysis in the following format:
                 
-                Summary: A 2-4 sentence summary of the company's financial health and investment potential.
-                Conclusion: A final recommendation in 1 sentence, explaining if it's a good investment opportunity.
+                Summary: A 2-4 sentence summary of the company's financial health, key strengths, and risks.
+                Conclusion: A final recommendation in 1 sentence, explaining if it's a good investment opportunity, considering the risks and strengths.
+                
+                Be concise and clear.
                 
                 Indicators:
                 %s
