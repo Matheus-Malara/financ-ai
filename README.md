@@ -22,6 +22,7 @@ It returns both:
 - OpenAI API (ChatGPT)
 - Alpha Vantage API
 - Jackson (JSON serialization)
+- JUnit 5 & Mockito
 - Lombok
 - Gradle
 
@@ -62,6 +63,31 @@ GET http://localhost:8080/analysis/WOLF
 
 ---
 
+## ✅ Testing
+
+The project includes a unit test using:
+
+- [JUnit 5](https://junit.org/junit5/)
+- [Mockito](https://site.mockito.org/) for mocking dependencies
+
+### Running tests
+
+```bash
+./gradlew test
+```
+
+The main focus of the tests is to ensure the logic in:
+- `StockAnalysisService` works as expected when handling external APIs
+- AI response formatting behaves correctly
+
+Test classes are located under:
+
+```
+src/test/java/com/analysis/financ_ai.service
+```
+
+---
+
 ## 📦 Sample Response
 
 ```json
@@ -82,12 +108,15 @@ GET http://localhost:8080/analysis/WOLF
 
 ## 🧠 Learning Goals
 
-This project was built as a learning journey to explore:
-- API integration with external services
-- Prompt engineering for investment analysis
-- Service and controller layer architecture
-- Clean DTO and model design
-- Use of WebClient (non-blocking I/O)
+This project was built as a personal learning journey to explore and practice:
+
+- API integration with external services (Alpha Vantage and OpenAI)
+- Prompt engineering for investment analysis using GPT
+- Service and controller layer architecture with clean separation of concerns
+- DTO and model design using Jackson and Lombok
+- Reactive programming using WebClient (non-blocking I/O)
+- Writing unit tests using **JUnit 5** and mocking with **Mockito**
+- Exception handling and formatting for a RESTful API
 
 ---
 
