@@ -47,10 +47,8 @@ public class StockAnalysisService {
         String summary = "";
         String conclusion = "";
 
-        // 🔍 Detecta se o texto tem marcações "**Summary:**" ou "**Conclusion:**"
         boolean hasBoldMarkers = aiResponse.contains("**Summary:**") || aiResponse.contains("**Conclusion:**");
 
-        // 🔧 Remove ** se existirem
         String normalizedResponse = hasBoldMarkers
                 ? aiResponse.replace("**", "")
                 : aiResponse;
@@ -85,7 +83,6 @@ public class StockAnalysisService {
             }
         }
 
-        // Finaliza a última seção
         if (currentSection.equals("summary")) {
             summary = current.toString().trim();
         } else if (currentSection.equals("conclusion")) {
