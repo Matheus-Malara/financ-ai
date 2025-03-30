@@ -69,7 +69,7 @@ GET http://localhost:8080/analysis/WOLF
   "indicators": {
     "PERatio": "15.2",
     "MarketCapitalization": "1.3T"
-    ...  
+    "..."  
   },
   "ai_analysis": {
     "summary": "The company shows strong profitability and stable growth.",
