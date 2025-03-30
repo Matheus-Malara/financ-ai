@@ -1,25 +1,39 @@
-# ⚠️ Arquivo com dados sensíveis (como a chave da OpenAI)
+# ⚠️ Sensitive file (contains secrets like OpenAI API key)
 src/main/resources/application.properties
 
-# Arquivos de log
+# Log files
 *.log
 logs/
 *.log.*
 
-# Diretórios de teste gerados
+# Generated test directories
 /test-output/
 test-results/
 surefire-reports/
+coverage-reports/
+jacoco.exec
 
-# Arquivos temporários do sistema
+# Build and cache files
+.gradle/
+build/
+*.class
+
+# Temporary files
+*.swp
+*.bak
+*.tmp
 .DS_Store
 Thumbs.db
 
-# Arquivos do IntelliJ adicionais
+# IntelliJ IDEA
 .idea/
 *.iml
 *.iws
 
-# Arquivos de cache Gradle
-.gradle/
-build/
+# VSCode
+.vscode/
+
+# Eclipse
+*.classpath
+*.project
+*.settings/
