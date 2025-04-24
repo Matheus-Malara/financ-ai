@@ -1,5 +1,6 @@
 package com.analysis.financ_ai.service;
 
+import com.analysis.financ_ai.dto.StockOverviewDTO;
 import com.analysis.financ_ai.model.StockOverview;
 import com.analysis.financ_ai.model.AiAnalysis;
 import com.analysis.financ_ai.model.StockAnalysisResponse;
@@ -24,20 +25,20 @@ public class StockAnalysisService {
     }
 
     public StockAnalysisResponse analyze(String ticker) {
-        StockOverview indicators = getStockOverview(ticker, apiKey);
+        StockOverview indicators = getStockOverview(ticker, apiKey).toModel();
         String aiResponse = openAiService.analyzeIndicatorsWithAi(indicators);
         AiAnalysis aiAnalysis = formatAiResponse(aiResponse);
 
         return new StockAnalysisResponse(indicators, aiAnalysis);
     }
 
-    public StockOverview getStockOverview(String symbol, String apiKey) {
+    public StockOverviewDTO getStockOverview(String symbol, String apiKey) {
         String url = "/query?function=OVERVIEW&symbol=" + symbol + "&apikey=" + apiKey;
 
-        Mono<StockOverview> response = webClient.get()
+        Mono<StockOverviewDTO> response = webClient.get()
                 .uri(url)
                 .retrieve()
-                .bodyToMono(StockOverview.class);
+                .bodyToMono(StockOverviewDTO.class);
 
         return response.block();
     }

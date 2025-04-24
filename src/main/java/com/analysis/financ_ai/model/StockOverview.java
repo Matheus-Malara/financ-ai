@@ -1,131 +1,263 @@
 package com.analysis.financ_ai.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Builder;
+import lombok.Value;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Value
+@Builder
 public class StockOverview {
-
     @JsonProperty("Symbol")
-    private String symbol;
+    String symbol;
 
-    @JsonProperty("MarketCapitalization")
-    private String marketCapitalization;
+    @JsonProperty("Name")
+    String name;
 
-    @JsonProperty("PERatio")
-    private String peRatio;
+    @JsonProperty("Description")
+    String description;
 
-    @JsonProperty("PEGRatio")
-    private String pegRatio;
+    CompanyInfo companyInfo;
 
-    @JsonProperty("PriceToBookRatio")
-    private String priceToBookRatio;
+    FinancialMetrics financialMetrics;
 
-    @JsonProperty("PriceToSalesRatioTTM")
-    private String priceToSalesRatio;
+    MarketData marketData;
 
-    @JsonProperty("EVToRevenue")
-    private String evToRevenue;
+    AnalystData analystData;
 
-    @JsonProperty("EVToEBITDA")
-    private String evToEbitda;
+    DividendInfo dividendInfo;
 
-    @JsonProperty("EPS")
-    private String eps;
+    @Value
+    @Builder
+    public static class CompanyInfo {
+        @JsonProperty("AssetType")
+        String assetType;
+        @JsonProperty("CIK")
+        String cik;
+        @JsonProperty("Exchange")
+        String exchange;
+        @JsonProperty("Currency")
+        String currency;
+        @JsonProperty("Country")
+        String country;
+        @JsonProperty("Sector")
+        String sector;
+        @JsonProperty("Industry")
+        String industry;
+        @JsonProperty("Address")
+        String address;
+        @JsonProperty("OfficialSite")
+        String officialSite;
+        @JsonProperty("FiscalYearEnd")
+        String fiscalYearEnd;
+        @JsonProperty("LatestQuarter")
+        String latestQuarter;
+    }
 
-    @JsonProperty("DividendPerShare")
-    private String dividendPerShare;
+    @Value
+    @Builder
+    public static class FinancialMetrics {
+        @JsonProperty("MarketCapitalization")
+        String marketCapitalization;
+        @JsonProperty("EBITDA")
+        String ebitda;
+        @JsonProperty("BookValue")
+        String bookValue;
+        @JsonProperty("EPS")
+        String eps;
+        @JsonProperty("DilutedEPSTTM")
+        String dilutedEps;
+        @JsonProperty("RevenuePerShareTTM")
+        String revenuePerShare;
+        @JsonProperty("RevenueTTM")
+        String revenueTtm;
+        @JsonProperty("GrossProfitTTM")
+        String grossProfitTtm;
+        @JsonProperty("ProfitMargin")
+        String profitMargin;
+        @JsonProperty("OperatingMarginTTM")
+        String operatingMargin;
+        @JsonProperty("ReturnOnAssetsTTM")
+        String returnOnAssets;
+        @JsonProperty("ReturnOnEquityTTM")
+        String returnOnEquity;
+        @JsonProperty("QuarterlyEarningsGrowthYOY")
+        String earningsGrowth;
+        @JsonProperty("QuarterlyRevenueGrowthYOY")
+        String revenueGrowth;
+    }
 
-    @JsonProperty("DividendYield")
-    private String dividendYield;
+    @Value
+    @Builder
+    public static class MarketData {
+        @JsonProperty("PERatio")
+        String peRatio;
+        @JsonProperty("PEGRatio")
+        String pegRatio;
+        @JsonProperty("PriceToBookRatio")
+        String priceToBookRatio;
+        @JsonProperty("PriceToSalesRatioTTM")
+        String priceToSalesRatio;
+        @JsonProperty("EVToRevenue")
+        String evToRevenue;
+        @JsonProperty("EVToEBITDA")
+        String evToEbitda;
+        @JsonProperty("Beta")
+        String beta;
+        @JsonProperty("52WeekHigh")
+        String maxPriceYear;
+        @JsonProperty("52WeekLow")
+        String minPriceYear;
+        @JsonProperty("50DayMovingAverage")
+        String movingAverage50Day;
+        @JsonProperty("200DayMovingAverage")
+        String movingAverage200Day;
+        @JsonProperty("SharesOutstanding")
+        String sharesOutstanding;
+    }
 
-    @JsonProperty("DividendDate")
-    private String dividendDate;
+    @Value
+    @Builder
+    public static class AnalystData {
+        @JsonProperty("AnalystTargetPrice")
+        String analystTargetPrice;
+        @JsonProperty("AnalystRatingStrongBuy")
+        String analystRatingStrongBuy;
+        @JsonProperty("AnalystRatingBuy")
+        String analystRatingBuy;
+        @JsonProperty("AnalystRatingHold")
+        String analystRatingHold;
+        @JsonProperty("AnalystRatingSell")
+        String analystRatingSell;
+        @JsonProperty("AnalystRatingStrongSell")
+        String analystRatingStrongSell;
+        @JsonProperty("TrailingPE")
+        String trailingPe;
+        @JsonProperty("ForwardPE")
+        String forwardPe;
+    }
 
-    @JsonProperty("ExDividendDate")
-    private String exDividendDate;
+    @Value
+    @Builder
+    public static class DividendInfo {
+        @JsonProperty("DividendPerShare")
+        String dividendPerShare;
 
-    @JsonProperty("ProfitMargin")
-    private String profitMargin;
+        @JsonProperty("DividendYield")
+        String dividendYield;
 
-    @JsonProperty("OperatingMarginTTM")
-    private String operatingMargin;
+        @JsonProperty("DividendDate")
+        String dividendDate;
 
-    @JsonProperty("ReturnOnAssetsTTM")
-    private String returnOnAssets;
+        @JsonProperty("ExDividendDate")
+        String exDividendDate;
+    }
 
-    @JsonProperty("ReturnOnEquityTTM")
-    private String returnOnEquity;
-
-    @JsonProperty("QuarterlyEarningsGrowthYOY")
-    private String earningsGrowth;
-
-    @JsonProperty("QuarterlyRevenueGrowthYOY")
-    private String revenueGrowth;
-
-    @JsonProperty("AnalystTargetPrice")
-    private String analystTargetPrice;
-
-    @JsonProperty("Beta")
-    private String beta;
-
-    @JsonProperty("52WeekHigh")
-    private String maxPriceYear;
-
-    @JsonProperty("52WeekLow")
-    private String minPriceYear;
-
-    public String toFormattedString() {
+    public String toAnalysisString() {
         return String.format("""
-                         📊 Company: %s
-                        \s
-                         💰 Valuation:
-                         - Market Cap: %s
-                         - P/E: %s | PEG: %s | P/B: %s | P/S: %s
-                         - EV/Revenue: %s | EV/EBITDA: %s
-                        \s
-                         📈 Indicators:
-                         - EPS: %s
-                         - Profit Margin: %s
-                         - Operating Margin: %s
-                         - ROA: %s | ROE: %s
-                        \s
-                         📊 Growth:
-                         - Earnings Growth (YoY): %s
-                         - Revenue Growth (YoY): %s
-                        \s
-                         📉 Volatility:
-                         - Beta: %s
-                         - 52-week High: %s | 52-week Low: %s
-                        \s
-                         💸 Dividends:
-                         - Dividends per Share: %s
-                         - Yield: %s
-                         - Dividend Date: %s | Ex-Date: %s
-                        \s
-                         🎯 Analyst Target Price: %s
+                        📊 %s
+                        %s
+                        💰 %s
+                        📈 %s
+                        🚀 %s
+                        📉 %s
+                        🎯 %s
+                        💸 %s
                         """,
-                symbol,
-                marketCapitalization,
-                peRatio, pegRatio, priceToBookRatio, priceToSalesRatio,
-                evToRevenue, evToEbitda,
-                eps,
-                profitMargin,
-                operatingMargin,
-                returnOnAssets, returnOnEquity,
-                earningsGrowth,
-                revenueGrowth,
-                beta, maxPriceYear, minPriceYear,
-                dividendPerShare, dividendYield, dividendDate, exDividendDate,
-                analystTargetPrice
+                formatCompanyHeader(),
+                formatCompanyInfo(),
+                formatValuation(),
+                formatPerformance(),
+                formatGrowth(),
+                formatRiskAndVolatility(),
+                formatAnalystEstimates(),
+                formatDividends()
         );
     }
+
+    private String formatCompanyHeader() {
+        return String.format("Company: %s (%s)", name, symbol);
+    }
+
+    private String formatCompanyInfo() {
+        return String.format("""
+                        - Sector: %s | Industry: %s
+                        - Country: %s | Currency: %s""",
+                companyInfo.getSector(), companyInfo.getIndustry(),
+                companyInfo.getCountry(), companyInfo.getCurrency());
+    }
+
+    private String formatValuation() {
+        return String.format("""
+                        Valuation:
+                        - Market Cap: %s
+                        - P/E: %s | PEG: %s | P/B: %s | P/S: %s
+                        - EV/Revenue: %s | EV/EBITDA: %s
+                        - Book Value: %s | EBITDA: %s""",
+                financialMetrics.getMarketCapitalization(),
+                marketData.getPeRatio(), marketData.getPegRatio(),
+                marketData.getPriceToBookRatio(), marketData.getPriceToSalesRatio(),
+                marketData.getEvToRevenue(), marketData.getEvToEbitda(),
+                financialMetrics.getBookValue(), financialMetrics.getEbitda());
+    }
+
+    private String formatPerformance() {
+        return String.format("""
+                        Performance:
+                        - EPS: %s | Diluted EPS: %s
+                        - Revenue/Share: %s | Revenue (TTM): %s
+                        - Gross Profit (TTM): %s
+                        - Profit Margin: %s | Operating Margin: %s
+                        - ROA: %s | ROE: %s""",
+                financialMetrics.getEps(), financialMetrics.getDilutedEps(),
+                financialMetrics.getRevenuePerShare(), financialMetrics.getRevenueTtm(),
+                financialMetrics.getGrossProfitTtm(),
+                financialMetrics.getProfitMargin(), financialMetrics.getOperatingMargin(),
+                financialMetrics.getReturnOnAssets(), financialMetrics.getReturnOnEquity());
+    }
+
+    private String formatGrowth() {
+        return String.format("""
+                        Growth:
+                        - Earnings Growth YoY: %s
+                        - Revenue Growth YoY: %s""",
+                financialMetrics.getEarningsGrowth(),
+                financialMetrics.getRevenueGrowth());
+    }
+
+    private String formatRiskAndVolatility() {
+        return String.format("""
+                        Risk & Volatility:
+                        - Beta: %s
+                        - 52w High: %s | 52w Low: %s
+                        - 50d Avg: %s | 200d Avg: %s""",
+                marketData.getBeta(),
+                marketData.getMaxPriceYear(), marketData.getMinPriceYear(),
+                marketData.getMovingAverage50Day(), marketData.getMovingAverage200Day());
+    }
+
+    private String formatAnalystEstimates() {
+        return String.format("""
+                        Analyst Estimates:
+                        - Target Price: %s
+                        - Ratings: Strong Buy: %s | Buy: %s | Hold: %s | Sell: %s | Strong Sell: %s
+                        - Trailing PE: %s | Forward PE: %s""",
+                analystData.getAnalystTargetPrice(),
+                analystData.getAnalystRatingStrongBuy(), analystData.getAnalystRatingBuy(),
+                analystData.getAnalystRatingHold(), analystData.getAnalystRatingSell(),
+                analystData.getAnalystRatingStrongSell(),
+                analystData.getTrailingPe(), analystData.getForwardPe());
+    }
+
+    private String formatDividends() {
+        return String.format("""
+                        Dividends:
+                        - Div/Share: %s | Yield: %s
+                        - Dividend Date: %s | Ex-Date: %s""",
+                dividendInfo.getDividendPerShare(),
+                dividendInfo.getDividendYield(),
+                dividendInfo.getDividendDate(),
+                dividendInfo.getExDividendDate());
+    }
+
+
 }

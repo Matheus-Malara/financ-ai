@@ -36,8 +36,9 @@ class StockAnalysisServiceTest {
     @Test
     void testAnalyze_ReturnsStockAnalysisResponse() {
         // Mock dependencies
-        StockOverview mockStockOverview = new StockOverview();
-        mockStockOverview.setSymbol("AAPL");
+        StockOverview mockStockOverview = StockOverview.builder()
+                .symbol("AAPL")
+                .build();
 
         WebClient.RequestHeadersUriSpec<?> uriSpec = Mockito.mock(WebClient.RequestHeadersUriSpec.class, Mockito.withSettings().defaultAnswer(Mockito.RETURNS_DEEP_STUBS));
         WebClient.ResponseSpec responseSpec = Mockito.mock();

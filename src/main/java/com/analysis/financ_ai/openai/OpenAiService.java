@@ -53,16 +53,18 @@ public class OpenAiService {
 
     private String generatePrompt(StockOverview indicators) {
         return """
-                Based on the following fundamental indicators of the company, provide an investment analysis in the following format:
+                You are a financial analyst. Based on the following fundamental indicators, generate an investment analysis with the following structure:
                 
-                Summary: A 2-4 sentence summary of the company's financial health, key strengths, and risks.
-                Conclusion: A final recommendation in 1 sentence, explaining if it's a good investment opportunity, considering the risks and strengths.
+                Summary: Provide a concise 2–4 sentence overview of the company’s financial health. Highlight key strengths (e.g., profitability, growth potential), as well as relevant risks (e.g., valuation concerns, debt, market volatility).
                 
-                Be concise and clear.
+                Conclusion: Give a one-sentence investment opinion (e.g., Buy, Hold, Avoid), clearly stating whether the stock represents a good opportunity, based on the strengths and risks mentioned.
                 
-                Indicators:
+                Be objective, avoid hype, and keep it clear and professional.
+                
+                Fundamental Indicators:
                 %s
-                """.formatted(indicators.toFormattedString());
+                """.formatted(indicators.toAnalysisString());
     }
+
 
 }
